@@ -1,0 +1,8 @@
+﻿"authentication_required" = "Autentizace vyžadována";
+
+"basic_auth_message" = "Server %@ vyžaduje uživatelské jméno a heslo.";
+
+"ok" = "OK";
+
+"cancel" = "Zrušení";
+

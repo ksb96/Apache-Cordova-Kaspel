@@ -1,0 +1,8 @@
+﻿"authentication_required" = "需要进行验证";
+
+"basic_auth_message" = "服务器 %@ 要求用户名和密码。";
+
+"ok" = "确定";
+
+"cancel" = "取消";
+

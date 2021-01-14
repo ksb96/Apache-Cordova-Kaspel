@@ -1,0 +1,8 @@
+﻿"authentication_required" = "Wymagane uwierzytelnienie";
+
+"basic_auth_message" = "Serwer %@ wymaga podania nazwy użytkownika oraz hasła.";
+
+"ok" = "OK";
+
+"cancel" = "Anuluj";
+

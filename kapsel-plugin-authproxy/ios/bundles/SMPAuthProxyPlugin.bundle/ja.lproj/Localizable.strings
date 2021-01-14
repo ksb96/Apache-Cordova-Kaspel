@@ -1,0 +1,8 @@
+﻿"authentication_required" = "認証が必要です";
+
+"basic_auth_message" = "サーバ %@ ではユーザ名とパスワードが必要です。";
+
+"ok" = "OK";
+
+"cancel" = "中止";
+

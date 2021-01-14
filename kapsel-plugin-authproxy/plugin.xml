@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="kapsel-plugin-authproxy"
+    version="3.15.0">
+
+    <name>AuthProxy</name>
+
+    <description>Provides capabilities that are used in certain security scenarios such as mutual authentication, basic authentication, and SAML / Doc URL: https://uacp2.hana.ondemand.com/doc/d9c75eebcfa840c8a4aa4b0e6a8136de/3.0.14/en-US/7c1cf2ce700610149f7ddf03dfddfeb4.html</description>
+
+    <author>SAP SE</author>
+
+    <license>SAP Mobile Platform SDK "License Agreement"</license>
+
+    <engines>
+      <engine name="cordova" version="&gt;=6.5.0" />
+      <engine name="cordova-android" version="&gt;=6.1.2" />
+      <engine name="cordova-ios" version="&gt;=4.3.1" />
+    </engines>
+
+    <dependency id="kapsel-plugin-corelibs" />
+	<dependency id="cordova-plugin-device" />
+    <dependency id="kapsel-plugin-inappbrowser"/>
+    <dependency id="kapsel-plugin-i18n"/>
+
+    <js-module name="AuthProxy" src="www/authproxy.js">
+		<clobbers target="sap.AuthProxy"/>
+	</js-module>
+
+	<js-module name="oauth2" src="www/oauth2.js">
+		<clobbers target="sap.AuthProxy.OAuth2"/>
+	</js-module>
+
+	<js-module name="saml2" src="www/saml2.js">
+		<clobbers target="sap.AuthProxy.SAML2"/>
+	</js-module>
+
+	<js-module name="datajsClient" src="www/datajsClient.js">
+		<runs/>
+	</js-module>
+
+	<js-module name="utils" src="www/utils.js">
+		<runs/>
+	</js-module>
+
+	<asset src="www/saveFormCredentialsIAB.js" target="plugins/kapsel-plugin-authproxy/www/saveFormCredentialsIAB.js" />
+
+    <platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="AuthProxy">
+				<param name="android-package" value="com.sap.mp.cordova.plugins.authProxy.AuthProxy"/>
+				<param name="onload" value="true"/>
+			</feature>
+
+			<preference name="SAPKapselHandleHttpRequests" value="false" />
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.sap.smp.client.httpc.authflows.SAML2AuthActivity" android:excludeFromRecents="true">
+			</activity>
+			<activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:name="com.sap.smp.client.httpc.authflows.OTPAuthActivity" android:excludeFromRecents="true">
+			</activity>
+			<activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:excludeFromRecents="true" android:name="com.sap.mp.cordova.plugins.authProxy.AuthProxyOTPAuthActivity">
+			</activity>
+			<receiver android:name="com.sap.mp.cordova.plugins.authProxy.WifiChangeReceiver">
+				<intent-filter>
+					<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+				</intent-filter>
+			</receiver>
+		</config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+            <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="$PACKAGE_NAME.xcallbackurl"/>
+            </intent-filter>
+        </config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+		</config-file>
+
+        <source-file src="android/libs/authproxy-android-3.15.0.aar" target-dir="libs"/>
+        <framework src="android/smp_authProxy.gradle" custom="true" type="gradleReference" />
+        
+        <js-module src="www/webStrategies.js" name="webStrategies">
+            <runs/>
+        </js-module>
+	</platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/widget">
+			<feature name="AuthProxy">
+				<param name="ios-package" value="SMPAuthProxyPlugin"/>
+				<param name="onload" value="true"/>
+			</feature>
+
+			<preference name="SAPKapselHandleHttpRequests" value="true" />
+		</config-file>
+
+        <source-file src="ios/libs/libSMPAuthProxyPlugin.a" framework="true"/>
+        <resource-file src="ios/Certificate.xcassets"/>
+        <resource-file src="ios/bundles/HttpConvAuthFlows.bundle" />
+        <resource-file src="ios/bundles/SMPAuthProxyPlugin.bundle" />
+        <asset target="plugins/kapsel-plugin-authproxy/www/xhr.js" src="ios/xhr.js"/>
+
+        <js-module src="www/webStrategies.js" name="webStrategies">
+            <runs/>
+        </js-module>
+    </platform>
+
+    <platform name="windows">
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities">
+        </config-file>
+
+        <js-module src="windows/src/AuthProxyPlugin.js" name="AuthProxyPlugin">
+          <merges target="AuthProxyPlugin" />
+        </js-module>
+		
+		<!-- WIN 10 -->
+		<resource-file src="windows/windows10/bin/Newtonsoft.Json.dll" target="plugins\kapsel-plugin-authproxy\windows10\bin\Newtonsoft.Json.dll" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.CertificateProvider.winmd" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.CertificateProvider.winmd" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.Logon.winmd" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.Logon.winmd" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.Logon.Core.winmd" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.Logon.Core.winmd" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.Net.Http.dll" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.Net.Http.dll" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.SecureStore.winmd" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.SecureStore.winmd" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.Supportability.winmd" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.Supportability.winmd" versions="&gt;8.1" reference="true"/>
+		<resource-file src="windows/windows10/bin/SAP.CoreLibs.dll" target="plugins\kapsel-plugin-authproxy\windows10\bin\SAP.CoreLibs.dll" versions="&gt;8.1" reference="true"/>
+		<framework src="windows/windows10/bin/SAP.AuthProxy.winmd" target-dir="windows10/bin" versions="&gt;8.1"/>
+		
+		<!-- WIN 8.1 -->
+		<resource-file src="windows/windows81/bin/Newtonsoft.Json.dll" target="plugins\kapsel-plugin-authproxy\windows81\bin\Newtonsoft.Json.dll" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.CertificateProvider.winmd" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.CertificateProvider.winmd" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.Logon.winmd" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.Logon.winmd" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.Logon.Core.winmd" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.Logon.Core.winmd" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.Net.Http.dll" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.Net.Http.dll" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.SecureStore.winmd" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.SecureStore.winmd" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.Supportability.winmd" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.Supportability.winmd" versions="=8.1" reference="true"/>
+		<resource-file src="windows/windows81/bin/SAP.CoreLibs.dll" target="plugins\kapsel-plugin-authproxy\windows81\bin\SAP.CoreLibs.dll" versions="=8.1" reference="true"/>
+		<framework src="windows/windows81/bin/SAP.AuthProxy.winmd" target-dir="windows81/bin" versions="=8.1"/>
+		
+    </platform>
+</plugin>

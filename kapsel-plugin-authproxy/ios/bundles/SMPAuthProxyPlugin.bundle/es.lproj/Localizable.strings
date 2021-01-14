@@ -1,0 +1,8 @@
+﻿"authentication_required" = "Se requiere autentificación";
+
+"basic_auth_message" = "El servidor %@ requiere un nombre de usuario y contraseña.";
+
+"ok" = "OK";
+
+"cancel" = "Cancelar";
+

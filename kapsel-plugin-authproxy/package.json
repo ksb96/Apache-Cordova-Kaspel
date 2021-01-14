@@ -1,0 +1,53 @@
+{
+  "_from": "kapsel-plugin-authproxy",
+  "_id": "kapsel-plugin-authproxy@3.15.0",
+  "_inBundle": false,
+  "_integrity": "sha512-gfQP2gh+jLXvDQQOaGP8E16AJslOEvLOz5hpDe+ikN7bVwkduXzwhxdR96KUJA2x2NFIGpF+EtattzVqHjSwlA==",
+  "_location": "/kapsel-plugin-authproxy",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "kapsel-plugin-authproxy",
+    "name": "kapsel-plugin-authproxy",
+    "escapedName": "kapsel-plugin-authproxy",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/kapsel-plugin-authproxy/-/kapsel-plugin-authproxy-3.15.0.tgz",
+  "_shasum": "6338bdc7e07ebc7a201ab43104a5c46912bc58b5",
+  "_spec": "kapsel-plugin-authproxy",
+  "_where": "C:\\Users\\Suman Dey\\Desktop\\Hybrid\\myapp",
+  "author": {
+    "name": "SAP SE"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "kapsel-plugin-authproxy",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "deprecated": false,
+  "description": "Kapsel Auth Proxy Plugin",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "kapsel-plugin-authproxy",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.15.0"
+}

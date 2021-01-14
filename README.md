@@ -1,2 +1,2 @@
 # Apache-Cordova-Kaspel
-Working Kaspel Plugin
+Working Kaspel Plugins

@@ -1,0 +1,36 @@
+{
+  "name": "kapsel-plugin-inappbrowser-xwalk",
+  "version": "3.14.18",
+  "description": "Cordova Crosswalk InAppBrowser Plugin",
+  "cordova": {
+    "id": "kapsel-plugin-inappbrowser-xwalk",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "in",
+    "app",
+    "browser",
+    "inappbrowser",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=6.3.1"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=5.2.2"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=4.2.1"
+    }
+  ],
+  "author": "",
+  "license": "Apache 2.0"
+}

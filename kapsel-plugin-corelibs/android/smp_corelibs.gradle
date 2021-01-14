@@ -1,0 +1,23 @@
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+// Apply values after project's build-extras.gradle
+cdvPluginPostBuildExtras.add({
+    dependencies {
+        compile(name:'corelibs-android-3.15.0', ext:'aar')
+        compile(name:'Common-3.15.0', ext:'aar')
+        compile(name:'Connectivity-3.15.0', ext:'aar')
+        compile(name:'ClientHubSLL-3.15.0', ext:'aar')
+        compile(name:'CoreServices-3.15.0', ext:'aar')
+        compile(name:'Request-3.15.0', ext:'aar')
+        compile(name:'DataVaultLib-3.15.0', ext:'aar')
+        compile(name:'ClientLog-3.15.0', ext:'aar')
+        compile(name:'SupportabilityFacade-3.15.0', ext:'aar')
+        compile(name:'HttpConversation-3.15.0', ext:'aar')
+        compile(name:'HttpConvAuthFlows-3.15.0', ext:'aar')
+        compile(name:'E2ETrace-3.15.0', ext:'aar')
+    }
+})
